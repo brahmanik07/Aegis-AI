@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create your Aegis AI account – AI-powered hospital management platform.">
+  <title>Sign Up – Aegis AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      padding: 30px 20px;
+    }
+
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(20, 184, 166, 0.12);
+      animation: drift linear infinite;
+    }
+
+    @keyframes drift {
+      0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-100px) scale(1);
+        opacity: 0;
+      }
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 28px;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(20px);
+      padding: 50px 48px;
+      width: 100%;
+      max-width: 500px;
+      animation: fadeUp 0.6s ease;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .brand {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .brand span {
+      color: #5eead4;
+    }
+
+    .card-sub {
+      text-align: center;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.45);
+      margin-bottom: 36px;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 7px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 13px 16px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1.5px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 15px;
+      transition: 0.3s;
+      outline: none;
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #14b8a6;
+      background: rgba(20, 184, 166, 0.08);
+      box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.15);
+    }
+
+    select option {
+      background: #1e3a3a;
+      color: #fff;
+    }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .strength-bar {
+      margin-top: 8px;
+      display: flex;
+      gap: 4px;
+    }
+
+    .strength-bar span {
+      flex: 1;
+      height: 4px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      transition: 0.3s;
+    }
+
+    .strength-bar.weak span:nth-child(1) {
+      background: #ef4444;
+    }
+
+    .strength-bar.fair span:nth-child(1),
+    .strength-bar.fair span:nth-child(2) {
+      background: #f97316;
+    }
+
+    .strength-bar.good span:nth-child(1),
+    .strength-bar.good span:nth-child(2),
+    .strength-bar.good span:nth-child(3) {
+      background: #22c55e;
+    }
+
+    .strength-label {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.4);
+      margin-top: 4px;
+    }
+
+    .btn-main {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #14b8a6, #0d9488);
+      color: #fff;
+      letter-spacing: 0.5px;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+
+    .btn-main:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(20, 184, 166, 0.4);
+    }
+
+    .switch-link {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .switch-link a {
+      color: #5eead4;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .switch-link a:hover {
+      text-decoration: underline;
+    }
+
+    .msg {
+      margin-top: 14px;
+      padding: 11px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      display: none;
+    }
+
+    .msg.success {
+      background: rgba(20, 184, 166, 0.15);
+      color: #5eead4;
+      border: 1px solid rgba(20, 184, 166, 0.3);
+      display: block;
+    }
+
+    .msg.error {
+      background: rgba(239, 68, 68, 0.12);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      display: block;
+    }
+
+    .progress-steps {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 30px;
+    }
+
+    .step {
+      width: 36px;
+      height: 4px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.15);
+      transition: 0.3s;
+    }
+
+    .step.active {
+      background: #14b8a6;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="particles" id="particles"></div>
+
+  <div class="card">
+    <div class="brand">AEGIS <span>AI</span></div>
+    <div class="card-sub">Create your patient account in seconds</div>
+
+    <div class="progress-steps">
+      <div class="step active" id="s1"></div>
+      <div class="step" id="s2"></div>
+      <div class="step" id="s3"></div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div id="step1">
+      <div class="grid2">
+        <div class="field">
+          <label>First Name</label>
+          <input type="text" id="firstName" placeholder="John">
+        </div>
+        <div class="field">
+          <label>Last Name</label>
+          <input type="text" id="lastName" placeholder="Doe">
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="field">
+          <label>Date of Birth</label>
+          <input type="date" id="dob">
+        </div>
+        <div class="field">
+          <label>Gender</label>
+          <select id="gender">
+            <option value="">Select</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-main" onclick="goStep2()">Continue →</button>
+    </div>
+
+    <!-- STEP 2 -->
+    <div id="step2" style="display:none;">
+      <div class="field">
+        <label>Phone Number</label>
+        <input type="tel" id="phone" placeholder="+91XXXXXXXXXX">
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Create a strong password" oninput="checkStrength(this.value)">
+        <div class="strength-bar" id="strengthBar">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="strength-label" id="strengthLabel"></div>
+      </div>
+      <div class="field">
+        <label>Confirm Password</label>
+        <input type="password" id="confirmPass" placeholder="Repeat your password">
+      </div>
+      <button class="btn-main" onclick="doSignup()">Create Account →</button>
+      <div style="text-align:center;margin-top:14px;">
+        <a onclick="goStep1()" style="color:#5eead4;cursor:pointer;font-size:13px;">← Back</a>
+      </div>
+    </div>
+
+    <!-- STEP 3 SUCCESS -->
+    <div id="step3" style="display:none; text-align:center; padding:20px 0;">
+      <div style="font-size:60px; margin-bottom:16px;">✅</div>
+      <div style="font-size:22px; font-weight:700; color:#5eead4; margin-bottom:8px;">Account Created!</div>
+      <div style="font-size:14px; color:rgba(255,255,255,0.55); margin-bottom:24px;">Redirecting to your dashboard…
+      </div>
+      <div
+        style="width:60px; height:4px; background: linear-gradient(90deg,#14b8a6,#0d9488); border-radius:4px; margin:auto; animation: progressAnim 2s linear forwards;">
+      </div>
+      <style>
+        @keyframes progressAnim {
+          from {
+            width: 60px
+          }
+
+          to {
+            width: 100%
+          }
+        }
+      </style>
+    </div>
+
+    <div class="msg" id="signupMsg"></div>
+
+    <div class="switch-link" id="loginLink">
+      Already have an account? <a href="/login">Sign In</a>
+    </div>
+  </div>
+
+  <script>
+    // Particles
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 18; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const sz = Math.random() * 60 + 20;
+      p.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random() * 100}%;animation-duration:${Math.random() * 15 + 8}s;animation-delay:${Math.random() * 10}s`;
+      container.appendChild(p);
+    }
+
+    function activateStep(n) {
+      [1, 2, 3].forEach(i => {
+        const s = document.getElementById('s' + i);
+        s.classList.toggle('active', i <= n);
+      });
+    }
+
+    function goStep1() {
+      document.getElementById('step1').style.display = 'block';
+      document.getElementById('step2').style.display = 'none';
+      activateStep(1);
+    }
+
+    function goStep2() {
+      const fn = document.getElementById('firstName').value.trim();
+      const ln = document.getElementById('lastName').value.trim();
+      if (!fn || !ln) { showMsg('Please enter your full name.', 'error'); return; }
+      document.getElementById('step1').style.display = 'none';
+      document.getElementById('step2').style.display = 'block';
+      activateStep(2);
+    }
+
+    function checkStrength(val) {
+      const bar = document.getElementById('strengthBar');
+      const lbl = document.getElementById('strengthLabel');
+      bar.className = 'strength-bar';
+      if (val.length < 1) { lbl.textContent = ''; return; }
+      if (val.length < 6) { bar.classList.add('weak'); lbl.textContent = 'Weak'; }
+      else if (val.length < 10) { bar.classList.add('fair'); lbl.textContent = 'Fair'; }
+      else { bar.classList.add('good'); lbl.textContent = 'Strong'; }
+    }
+
+    function showMsg(text, type) {
+      const el = document.getElementById('signupMsg');
+      el.className = 'msg ' + type; el.textContent = text;
+    }
+
+    async function doSignup() {
+      const phone = document.getElementById('phone').value.trim();
+      const pass = document.getElementById('password').value;
+      const conf = document.getElementById('confirmPass').value;
+      const name = document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value;
+
+      if (!phone || !pass) { showMsg('Please fill all fields.', 'error'); return; }
+      if (pass !== conf) { showMsg('Passwords do not match.', 'error'); return; }
+      if (pass.length < 6) { showMsg('Password must be at least 6 characters.', 'error'); return; }
+
+      try {
+        const res = await fetch('/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, phone, password: pass })
+        });
+        const data = await res.json();
+        if (data.status === 'success') {
+          // Also save to localStorage for login page fallback
+          let users = JSON.parse(localStorage.getItem('aegis_users') || '{}');
+          users[phone] = pass;
+          localStorage.setItem('aegis_users', JSON.stringify(users));
+          activateStep(3);
+          document.getElementById('step2').style.display = 'none';
+          document.getElementById('step3').style.display = 'block';
+          document.getElementById('loginLink').style.display = 'none';
+          document.getElementById('signupMsg').className = 'msg';
+          setTimeout(() => { window.location.href = '/login'; }, 2200);
+        } else {
+          showMsg(data.message || 'Signup failed.', 'error');
+        }
+      } catch (e) {
+        // Fallback
+        let users = JSON.parse(localStorage.getItem('aegis_users') || '{}');
+        if (users[phone]) { showMsg('User already exists.', 'error'); return; }
+        users[phone] = pass;
+        localStorage.setItem('aegis_users', JSON.stringify(users));
+        activateStep(3);
+        document.getElementById('step2').style.display = 'none';
+        document.getElementById('step3').style.display = 'block';
+        document.getElementById('loginLink').style.display = 'none';
+        document.getElementById('signupMsg').className = 'msg';
+        setTimeout(() => { window.location.href = '/login'; }, 2200);
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Aegis AI – Patient Registration</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(120deg, #f8fbfd, #eef6f8);
+      display: flex;
+      justify-content: center;
+      padding: 40px 0;
+      color: #0b3c42;
+    }
+
+    /* ---------- CARD ---------- */
+    .card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 900px;
+      padding: 50px;
+      border-radius: 28px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
+      animation: fadeUp 1s ease;
+    }
+
+    /* ---------- HEADER ---------- */
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      font-size: 34px;
+      font-weight: 700;
+      color: #0f6c74;
+    }
+
+    .header p {
+      margin-top: 8px;
+      font-size: 15px;
+      color: #4a6b70;
+    }
+
+    /* ---------- GRID ---------- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    /* ---------- FORM FIELDS ---------- */
+    .field {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: #2f5f66;
+    }
+
+    input,
+    textarea,
+    select {
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1.8px solid #cfe6ea;
+      font-size: 15px;
+      outline: none;
+      transition: 0.3s;
+      background: #ffffff;
+    }
+
+    textarea {
+      resize: none;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #0f6c74;
+      box-shadow: 0 0 0 4px rgba(15, 108, 116, 0.12);
+    }
+
+    /* ---------- SECTION TITLE ---------- */
+    .section-title {
+      grid-column: 1/-1;
+      font-size: 18px;
+      font-weight: 600;
+      color: #0f6c74;
+      margin-top: 20px;
+    }
+
+    /* ---------- BUTTON ---------- */
+    .btn {
+      margin-top: 40px;
+      width: 100%;
+      padding: 16px;
+      border-radius: 34px;
+      border: none;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      background: #41969e;
+      color: #298494;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #0c5860;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ---------- ANIMATION ---------- */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+
+    <div class="header">
+      <h1>Patient Registration</h1>
+      <p>AI-assisted intake for accurate and fair healthcare decisions</p>
+    </div>
+
+    <form id="patientForm">
+
+      <div class="grid">
+
+        <div class="section-title">Personal Information</div>
+
+        <div class="field">
+          <label>Full Name</label>
+          <input type="text" required>
+        </div>
+
+        <div class="field">
+          <label>Date of Birth</label>
+          <input type="date">
+        </div>
+
+        <div class="field">
+          <label>Age</label>
+          <input type="number">
+        </div>
+
+        <div class="field">
+          <label>Gender</label>
+          <select>
+            <option value="">Select</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Patient ID / Registration Number</label>
+          <input type="text">
+        </div>
+
+        <div class="section-title">Emergency Contact</div>
+
+        <div class="field">
+          <label>Emergency Contact Name</label>
+          <input type="text">
+        </div>
+
+        <div class="field">
+          <label>Relationship</label>
+          <input type="text">
+        </div>
+
+        <div class="field">
+          <label>Emergency Contact Phone</label>
+          <input type="tel">
+        </div>
+
+        <div class="section-title">Visit Details</div>
+
+        <div class="field">
+          <label>Reason for Visit (Symptoms / Purpose)</label>
+          <textarea rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label>Department</label>
+          <select>
+            <option value="">Select Department</option>
+            <option>Cardiology</option>
+            <option>Orthopedics</option>
+            <option>Neurology</option>
+            <option>General Medicine</option>
+            <option>Pediatrics</option>
+            <option>Emergency</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Preferred Doctor (Optional)</label>
+          <input type="text">
+        </div>
+
+        <div class="field">
+          <label>Appointment Type</label>
+          <select>
+            <option>New</option>
+            <option>Follow-up</option>
+            <option>Emergency</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Preferred Date</label>
+          <input type="date">
+        </div>
+
+        <div class="field">
+          <label>Preferred Time</label>
+          <input type="time">
+        </div>
+
+        <div class="field">
+          <label>Referral Source</label>
+          <select>
+            <option>Self</option>
+            <option>Doctor</option>
+            <option>Hospital</option>
+          </select>
+        </div>
+
+        <div class="section-title">Medical History Intake (AI-Assisted)</div>
+
+        <div class="field">
+          <label>Past Illnesses</label>
+          <textarea rows="3" placeholder="e.g. Diabetes, Hypertension"></textarea>
+        </div>
+
+        <div class="field">
+          <label>Surgeries</label>
+          <textarea rows="3" placeholder="e.g. Appendectomy (2019)"></textarea>
+        </div>
+
+        <div class="field">
+          <label>Allergies</label>
+          <textarea rows="3" placeholder="e.g. Penicillin, Peanuts"></textarea>
+        </div>
+
+        <div class="field">
+          <label>Current Medications</label>
+          <textarea rows="3" placeholder="e.g. Metformin, BP tablets"></textarea>
+        </div>
+
+      </div>
+
+      <button class="btn" type="submit">Submit for AI Processing</button>
+
+    </form>
+
+  </div>
+
+  <script>
+    document.getElementById("patientForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Patient data successfully submitted to Aegis AI for analysis.");
+    });
+  </script>
+
+</body>
+
+</html>

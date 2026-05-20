@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AEGIS AI – Hospital Management System</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ---------- GLOBAL ---------- */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(120deg, #f8fbfd, #e6f4f6);
+            min-height: 100vh;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+
+        /* ---------- FLOATING ICONS ---------- */
+
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .bg-animation img {
+            position: absolute;
+            width: 120px;
+            opacity: 0.15;
+            animation: float 12s infinite ease-in-out;
+        }
+
+        .bg-animation img:nth-child(1) {
+            top: 10%;
+            left: 10%;
+        }
+
+        .bg-animation img:nth-child(2) {
+            top: 60%;
+            left: 20%;
+            animation-delay: 3s;
+        }
+
+        .bg-animation img:nth-child(3) {
+            top: 30%;
+            right: 15%;
+            animation-delay: 6s;
+        }
+
+        .bg-animation img:nth-child(4) {
+            bottom: 10%;
+            right: 25%;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-30px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* ---------- NAVBAR ---------- */
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 70px;
+            background: white;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #0f6c74;
+        }
+
+        /* ---------- BUTTONS ---------- */
+
+        .btn {
+            padding: 11px 26px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            margin-left: 12px;
+            transition: .3s;
+            font-weight: 500;
+        }
+
+        .login {
+            background: white;
+            border: 2px solid #0f6c74;
+            color: #0f6c74;
+        }
+
+        .register {
+            background: #0f6c74;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ---------- HERO ---------- */
+
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 100px 70px;
+            flex-wrap: wrap;
+            min-height: 100vh;
+        }
+
+        .hero-text {
+            max-width: 600px;
+            animation: fadeUp 1.5s ease;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            line-height: 1.2;
+        }
+
+        .hero span {
+            color: #1fb5a8;
+        }
+
+        .hero p {
+            margin-top: 25px;
+            font-size: 19px;
+            color: #2b555b;
+            line-height: 1.6;
+        }
+
+        /* ---------- DOCTOR IMAGE ---------- */
+
+        .doctor {
+            width: 420px;
+            animation: doctorMove 5s infinite ease-in-out;
+        }
+
+        @keyframes doctorMove {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* ---------- FEATURES ---------- */
+
+        .features {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+        }
+
+        /* ---------- ANIMATION ---------- */
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ---------- MOBILE ---------- */
+
+        @media(max-width:900px) {
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .doctor {
+                width: 300px;
+                margin-top: 40px;
+            }
+
+            nav {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Floating Icons -->
+    <div class="bg-animation">
+        <img src="https://cdn-icons-png.flaticon.com/512/2966/2966327.png">
+        <img src="https://cdn-icons-png.flaticon.com/512/2785/2785544.png">
+        <img src="https://cdn-icons-png.flaticon.com/512/3774/3774299.png">
+        <img src="https://cdn-icons-png.flaticon.com/512/4320/4320371.png">
+    </div>
+
+    <!-- NAVBAR -->
+    <nav>
+
+        <div class="logo">AEGIS AI</div>
+
+        <div>
+            <a href="/login">
+                <button class="btn login">Login</button>
+            </a>
+
+            <a href="/signup">
+                <button class="btn register">Register</button>
+            </a>
+        </div>
+
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+
+        <div class="hero-text">
+
+            <h1>
+                AEGIS AI <br>
+                <span>Hospital Management System</span>
+            </h1>
+
+            <p>
+                AI-powered autonomous hospital platform that optimizes patient queues,
+                predicts emergencies, and enables real-time healthcare access for everyone.
+            </p>
+
+            <div style="margin-top:30px;">
+
+                <a href="/signup">
+                    <button class="btn register">Get Started</button>
+                </a>
+
+                <a href="/login">
+                    <button class="btn login">Request Demo</button>
+                </a>
+
+            </div>
+
+            <div class="features">
+
+                <div class="card">
+                    <h3>AI Queue Optimization</h3>
+                    <p>Reduces waiting time using intelligent patient prioritization.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Smart Doctor Allocation</h3>
+                    <p>Automatically balances doctor workload.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Emergency Prediction</h3>
+                    <p>Detects critical patients early using AI agents.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Inclusive Healthcare</h3>
+                    <p>Fair treatment independent of economic status.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <img class="doctor" src="https://img.freepik.com/free-vector/doctor-character-background_1270-84.jpg">
+
+    </section>
+
+</body>
+
+</html>

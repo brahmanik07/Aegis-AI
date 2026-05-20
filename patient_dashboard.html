@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Dashboard – Aegis AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: #e2e8f0;
+      min-height: 100vh;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      background: linear-gradient(90deg, #0d9488, #134e4a);
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .topbar-brand {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+
+    .topbar-brand span {
+      color: #99f6e4;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .topbar-user {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .topbar-user strong {
+      color: #fff;
+    }
+
+    .logout-btn {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .logout-btn:hover {
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    /* LAYOUT */
+    .container {
+      display: flex;
+      padding: 28px;
+      gap: 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 280px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .patient-card {
+      background: linear-gradient(135deg, #14b8a6, #0d9488);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 8px 32px rgba(20, 184, 166, 0.3);
+    }
+
+    .patient-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin-bottom: 14px;
+    }
+
+    .patient-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .patient-id {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .stat-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .stat-box {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .stat-box .num {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .stat-box .lbl {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 2px;
+    }
+
+    .nav-card {
+      background: #1e293b;
+      border-radius: 14px;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-card h4 {
+      font-size: 11px;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-bottom: 4px;
+      font-size: 14px;
+      color: #94a3b8;
+    }
+
+    .nav-item:hover,
+    .nav-item.active {
+      background: #14b8a6;
+      color: #fff;
+    }
+
+    .nav-item span {
+      font-size: 18px;
+    }
+
+    /* MAIN */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* STATS ROW */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: #1e293b;
+      border-radius: 14px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: 0.2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(20, 184, 166, 0.3);
+    }
+
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .stat-info .val {
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .stat-info .key {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    /* SECTION CARD */
+    .section-card {
+      background: #1e293b;
+      border-radius: 16px;
+      padding: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .section-header h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: #f1f5f9;
+    }
+
+    .section-header h3 span {
+      font-size: 20px;
+      margin-right: 8px;
+    }
+
+    .badge {
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      background: rgba(20, 184, 166, 0.15);
+      color: #5eead4;
+    }
+
+    /* FORM */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group.full {
+      grid-column: 1/-1;
+    }
+
+    .form-group label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 7px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: 12px 14px;
+      background: #0f172a;
+      border: 1.5px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      color: #e2e8f0;
+      font-size: 14px;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: #14b8a6;
+      box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.12);
+    }
+
+    .form-group textarea {
+      resize: none;
+      height: 80px;
+    }
+
+    .form-group select option {
+      background: #1e293b;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: #475569;
+    }
+
+    .form-group input[readonly] {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .submit-btn {
+      margin-top: 20px;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, #14b8a6, #0d9488);
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(20, 184, 166, 0.35);
+    }
+
+    /* TABLE */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead tr {
+      background: #0f172a;
+    }
+
+    th {
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    td {
+      padding: 14px 16px;
+      font-size: 14px;
+      color: #94a3b8;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    tbody tr:hover {
+      background: rgba(20, 184, 166, 0.05);
+    }
+
+    .tag {
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .tag.green {
+      background: rgba(34, 197, 94, 0.12);
+      color: #86efac;
+    }
+
+    .tag.blue {
+      background: rgba(59, 130, 246, 0.12);
+      color: #93c5fd;
+    }
+
+    .tag.yellow {
+      background: rgba(245, 158, 11, 0.12);
+      color: #fcd34d;
+    }
+
+    /* AI INSIGHTS */
+    .insights-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .insight-box {
+      background: #0f172a;
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .insight-box .icon {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .insight-box .title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #94a3b8;
+      margin-bottom: 6px;
+    }
+
+    .insight-box .value {
+      font-size: 20px;
+      font-weight: 700;
+      color: #5eead4;
+    }
+
+    .insight-box .desc {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    .risk-bar {
+      height: 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      margin-top: 8px;
+      overflow: hidden;
+    }
+
+    .risk-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 1s ease;
+    }
+
+    /* ALERTS */
+    .alert-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px;
+      border-radius: 10px;
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      margin-bottom: 10px;
+    }
+
+    .alert-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      background: #14b8a6;
+      color: #fff;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 10px 40px rgba(20, 184, 166, 0.5);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:900px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+      }
+
+      .stats-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .insights-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-brand">AEGIS <span>AI</span> – Hospital Management</div>
+    <div class="topbar-right">
+      <div class="topbar-user">Welcome, <strong id="userName">Patient</strong></div>
+      <button class="logout-btn" onclick="window.location.href='/logout'">Logout</button>
+    </div>
+  </div>
+
+  <!-- MAIN LAYOUT -->
+  <div class="container">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="patient-card">
+        <div class="patient-avatar">👤</div>
+        <div class="patient-name" id="sidebarName">Loading…</div>
+        <div class="patient-id" id="sidebarId">Patient ID: —</div>
+        <div class="stat-row">
+          <div class="stat-box">
+            <div class="num" id="visitCount">6</div>
+            <div class="lbl">Visits</div>
+          </div>
+          <div class="stat-box">
+            <div class="num" id="apptCount">0</div>
+            <div class="lbl">Appointments</div>
+          </div>
+          <div class="stat-box">
+            <div class="num">1</div>
+            <div class="lbl">Surgeries</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-card">
+        <h4>Navigation</h4>
+        <div class="nav-item active" onclick="switchTab('book')"><span>📅</span> Book Appointment</div>
+        <div class="nav-item" onclick="switchTab('records')"><span>📋</span> Medical Records</div>
+        <div class="nav-item" onclick="switchTab('insights')"><span>🧠</span> AI Insights</div>
+        <div class="nav-item" onclick="switchTab('alerts')"><span>🔔</span> Alerts</div>
+        <div class="nav-item" onclick="switchTab('reg')"><span>📝</span> Patient Registration</div>
+      </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+
+      <!-- STATS ROW -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(20,184,166,0.12);">🏥</div>
+          <div class="stat-info">
+            <div class="val">6</div>
+            <div class="key">Hospital Visits</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(59,130,246,0.12);">📅</div>
+          <div class="stat-info">
+            <div class="val" id="statsAppt">0</div>
+            <div class="key">Appointments</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(245,158,11,0.12);">💊</div>
+          <div class="stat-info">
+            <div class="val">3</div>
+            <div class="key">Medications</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(34,197,94,0.12);">❤️</div>
+          <div class="stat-info">
+            <div class="val">Low</div>
+            <div class="key">Risk Level</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOOK APPOINTMENT TAB -->
+      <div class="section-card tab-panel" id="tab-book">
+        <div class="section-header">
+          <h3><span>📅</span>Book an Appointment</h3>
+          <span class="badge">New</span>
+        </div>
+        <form id="appointmentForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Hospital</label>
+              <input type="text" id="hospital" placeholder="Enter hospital name" required>
+            </div>
+            <div class="form-group">
+              <label>Doctor Name</label>
+              <input type="text" id="doctor" placeholder="Enter doctor name" required>
+            </div>
+            <div class="form-group">
+              <label>Department</label>
+              <select id="dept">
+                <option value="">Select Department</option>
+                <option>Cardiology</option>
+                <option>Orthopedics</option>
+                <option>Neurology</option>
+                <option>General Medicine</option>
+                <option>Pediatrics</option>
+                <option>Emergency</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Appointment Type</label>
+              <select id="apptType">
+                <option>New</option>
+                <option>Follow-up</option>
+                <option>Emergency</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Preferred Timing</label>
+              <input type="datetime-local" id="timing" required>
+            </div>
+            <div class="form-group">
+              <label>Patient ID</label>
+              <input type="text" id="patientId" value="{{ user.id if user else 'P-10021' }}" readonly>
+            </div>
+            <div class="form-group full">
+              <label>Health Issue / Symptoms</label>
+              <textarea id="issue" placeholder="Describe your health issue in detail" required></textarea>
+            </div>
+          </div>
+          <button type="submit" class="submit-btn">📅 Book Appointment</button>
+        </form>
+      </div>
+
+      <!-- RECORDS TAB -->
+      <div class="section-card tab-panel" id="tab-records" style="display:none;">
+        <div class="section-header">
+          <h3><span>📋</span>Medical Records</h3>
+          <span class="badge" id="recordBadge">0 Records</span>
+        </div>
+        <div id="recordsTable">
+          <p style="color:#64748b;font-size:14px;">No appointments booked yet. Book your first appointment to see
+            records here.</p>
+        </div>
+      </div>
+
+      <!-- AI INSIGHTS TAB -->
+      <div class="section-card tab-panel" id="tab-insights" style="display:none;">
+        <div class="section-header">
+          <h3><span>🧠</span>AI Health Insights</h3>
+          <span class="badge">Live Analysis</span>
+        </div>
+        <div class="insights-grid">
+          <div class="insight-box">
+            <div class="icon">❤️</div>
+            <div class="title">Risk Level</div>
+            <div class="value">Low</div>
+            <div class="risk-bar">
+              <div class="risk-fill" style="width:25%;background:#22c55e;"></div>
+            </div>
+            <div class="desc">Your vitals are stable. No immediate health risks detected.</div>
+          </div>
+          <div class="insight-box">
+            <div class="icon">🧬</div>
+            <div class="title">AI Summary</div>
+            <div class="value" style="font-size:15px;">Stable Condition</div>
+            <div class="desc">Maintain current lifestyle. Regular checkups recommended every 3 months.</div>
+          </div>
+          <div class="insight-box">
+            <div class="icon">💊</div>
+            <div class="title">Medication Adherence</div>
+            <div class="value">92%</div>
+            <div class="risk-bar">
+              <div class="risk-fill" style="width:92%;background:#14b8a6;"></div>
+            </div>
+            <div class="desc">Excellent adherence to prescribed medications.</div>
+          </div>
+          <div class="insight-box">
+            <div class="icon">🩺</div>
+            <div class="title">Next Checkup</div>
+            <div class="value">Aug 2026</div>
+            <div class="desc">Based on your current health profile, schedule your next visit in 3 months.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ALERTS TAB -->
+      <div class="section-card tab-panel" id="tab-alerts" style="display:none;">
+        <div class="section-header">
+          <h3><span>🔔</span>Alerts & Reminders</h3>
+          <span class="badge">3 Active</span>
+        </div>
+        <div class="alert-item">
+          <div class="alert-dot" style="background:#ef4444;"></div>
+          <div>
+            <div style="font-size:14px;font-weight:600;color:#f1f5f9;">Take medication at 8:00 PM</div>
+            <div style="font-size:12px;color:#64748b;margin-top:3px;">Metformin 500mg – Daily reminder</div>
+          </div>
+        </div>
+        <div class="alert-item">
+          <div class="alert-dot" style="background:#f59e0b;"></div>
+          <div>
+            <div style="font-size:14px;font-weight:600;color:#f1f5f9;">Upcoming appointment tomorrow</div>
+            <div style="font-size:12px;color:#64748b;margin-top:3px;">Dr. Smith – Cardiology – 10:00 AM</div>
+          </div>
+        </div>
+        <div class="alert-item">
+          <div class="alert-dot" style="background:#14b8a6;"></div>
+          <div>
+            <div style="font-size:14px;font-weight:600;color:#f1f5f9;">Lab results are available</div>
+            <div style="font-size:12px;color:#64748b;margin-top:3px;">Blood Test Report – Feb 20, 2026</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PATIENT REGISTRATION TAB -->
+      <div class="section-card tab-panel" id="tab-reg" style="display:none;">
+        <div class="section-header">
+          <h3><span>📝</span>Patient Registration</h3>
+          <span class="badge">AI-Assisted</span>
+        </div>
+        <form id="regForm">
+          <div class="form-grid">
+            <div class="form-group"><label>Full Name</label><input type="text" placeholder="Full legal name" required>
+            </div>
+            <div class="form-group"><label>Date of Birth</label><input type="date"></div>
+            <div class="form-group"><label>Age</label><input type="number" placeholder="Age"></div>
+            <div class="form-group"><label>Gender</label>
+              <select>
+                <option value="">Select</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Emergency Contact Name</label><input type="text" placeholder="Guardian name">
+            </div>
+            <div class="form-group"><label>Emergency Contact Phone</label><input type="tel" placeholder="+91XXXXXXXXXX">
+            </div>
+            <div class="form-group"><label>Preferred Department</label>
+              <select>
+                <option value="">Select</option>
+                <option>Cardiology</option>
+                <option>Orthopedics</option>
+                <option>Neurology</option>
+                <option>General Medicine</option>
+                <option>Pediatrics</option>
+                <option>Emergency</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Referral Source</label>
+              <select>
+                <option>Self</option>
+                <option>Doctor</option>
+                <option>Hospital</option>
+              </select>
+            </div>
+            <div class="form-group full"><label>Past Illnesses</label><textarea
+                placeholder="e.g. Diabetes, Hypertension"></textarea></div>
+            <div class="form-group full"><label>Current Medications</label><textarea
+                placeholder="e.g. Metformin, BP tablets"></textarea></div>
+            <div class="form-group full"><label>Allergies</label><textarea
+                placeholder="e.g. Penicillin, Peanuts"></textarea></div>
+          </div>
+          <button type="submit" class="submit-btn">📤 Submit to Aegis AI</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    let appointments = [];
+
+    // Load user info
+    const savedName = "{{ user.name if user else 'Patient' }}";
+    const savedId = "{{ user.id if user else 'P-10021' }}";
+    document.getElementById('userName').textContent = savedName;
+    document.getElementById('sidebarName').textContent = savedName;
+    document.getElementById('sidebarId').textContent = 'Patient ID: ' + savedId;
+
+    // Fetch from Flask API if available
+    fetch('/api/appointments')
+      .then(r => r.json())
+      .then(d => {
+        if (d.status === 'success' && d.data.length > 0) {
+          appointments = d.data;
+          updateCounters();
+          renderRecords();
+        }
+      }).catch(() => { });
+
+    function showToast(msg, success = true) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.style.background = success ? '#14b8a6' : '#ef4444';
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    function switchTab(name) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.style.display = 'none');
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      document.getElementById('tab-' + name).style.display = 'block';
+      event.currentTarget.classList.add('active');
+    }
+
+    function updateCounters() {
+      document.getElementById('apptCount').textContent = appointments.length;
+      document.getElementById('statsAppt').textContent = appointments.length;
+      document.getElementById('recordBadge').textContent = appointments.length + ' Records';
+    }
+
+    function renderRecords() {
+      const div = document.getElementById('recordsTable');
+      if (appointments.length === 0) {
+        div.innerHTML = '<p style="color:#64748b;font-size:14px;">No appointments booked yet.</p>';
+        return;
+      }
+      div.innerHTML = `
+    <table>
+      <thead><tr>
+        <th>Patient ID</th><th>Hospital</th><th>Doctor</th>
+        <th>Department</th><th>Timing</th><th>Issue</th><th>Status</th>
+      </tr></thead>
+      <tbody>
+        ${appointments.map(r => `
+          <tr>
+            <td>${r.patientId}</td>
+            <td>${r.hospital}</td>
+            <td>${r.doctor}</td>
+            <td><span class="tag blue">${r.dept || 'General'}</span></td>
+            <td>${new Date(r.timing).toLocaleString()}</td>
+            <td>${r.issue}</td>
+            <td><span class="tag green">Confirmed</span></td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>`;
+    }
+
+    // Book appointment
+    document.getElementById('appointmentForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const appt = {
+        patientId: savedId,
+        hospital: document.getElementById('hospital').value,
+        doctor: document.getElementById('doctor').value,
+        dept: document.getElementById('dept').value || 'General',
+        apptType: document.getElementById('apptType').value,
+        timing: document.getElementById('timing').value,
+        issue: document.getElementById('issue').value
+      };
+
+      try {
+        const res = await fetch('/api/appointments', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(appt)
+        });
+        await res.json();
+      } catch (e) { }
+
+      appointments.push(appt);
+      updateCounters();
+      renderRecords();
+      this.reset();
+      document.getElementById('patientId').value = savedId;
+      showToast('✅ Appointment booked successfully!');
+    });
+
+    // Patient registration form
+    document.getElementById('regForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      showToast('✅ Patient data submitted to Aegis AI for analysis!');
+      this.reset();
+    });
+  </script>
+</body>
+
+</html>
