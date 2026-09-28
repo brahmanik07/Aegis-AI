@@ -251,24 +251,6 @@
       display: block;
     }
 
-    .progress-steps {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 30px;
-    }
-
-    .step {
-      width: 36px;
-      height: 4px;
-      border-radius: 4px;
-      background: rgba(255, 255, 255, 0.15);
-      transition: 0.3s;
-    }
-
-    .step.active {
-      background: #14b8a6;
-    }
   </style>
 </head>
 
@@ -280,51 +262,25 @@
     <div class="brand">AEGIS <span>AI</span></div>
     <div class="card-sub">Create your patient account in seconds</div>
 
-    <div class="progress-steps">
-      <div class="step active" id="s1"></div>
-      <div class="step" id="s2"></div>
-      <div class="step" id="s3"></div>
-    </div>
-
-    <!-- STEP 1 -->
-    <div id="step1">
+    <!-- SIGNUP FORM (single page) -->
+    <div id="signupForm">
       <div class="grid2">
         <div class="field">
           <label>First Name</label>
-          <input type="text" id="firstName" placeholder="John">
+          <input type="text" id="firstName" placeholder="John" required>
         </div>
         <div class="field">
           <label>Last Name</label>
-          <input type="text" id="lastName" placeholder="Doe">
+          <input type="text" id="lastName" placeholder="Doe" required>
         </div>
       </div>
-      <div class="grid2">
-        <div class="field">
-          <label>Date of Birth</label>
-          <input type="date" id="dob">
-        </div>
-        <div class="field">
-          <label>Gender</label>
-          <select id="gender">
-            <option value="">Select</option>
-            <option>Male</option>
-            <option>Female</option>
-            <option>Other</option>
-          </select>
-        </div>
-      </div>
-      <button class="btn-main" onclick="goStep2()">Continue →</button>
-    </div>
-
-    <!-- STEP 2 -->
-    <div id="step2" style="display:none;">
       <div class="field">
         <label>Phone Number</label>
-        <input type="tel" id="phone" placeholder="+91XXXXXXXXXX">
+        <input type="tel" id="phone" placeholder="9876543210" required>
       </div>
       <div class="field">
         <label>Password</label>
-        <input type="password" id="password" placeholder="Create a strong password" oninput="checkStrength(this.value)">
+        <input type="password" id="password" placeholder="Create a strong password" oninput="checkStrength(this.value)" required>
         <div class="strength-bar" id="strengthBar">
           <span></span><span></span><span></span>
         </div>
@@ -332,34 +288,16 @@
       </div>
       <div class="field">
         <label>Confirm Password</label>
-        <input type="password" id="confirmPass" placeholder="Repeat your password">
+        <input type="password" id="confirmPass" placeholder="Repeat your password" required>
       </div>
-      <button class="btn-main" onclick="doSignup()">Create Account →</button>
-      <div style="text-align:center;margin-top:14px;">
-        <a onclick="goStep1()" style="color:#5eead4;cursor:pointer;font-size:13px;">← Back</a>
-      </div>
+      <button class="btn-main" id="signupBtn" onclick="doSignup()">Create Account →</button>
     </div>
 
-    <!-- STEP 3 SUCCESS -->
-    <div id="step3" style="display:none; text-align:center; padding:20px 0;">
-      <div style="font-size:60px; margin-bottom:16px;">✅</div>
+    <!-- SUCCESS STATE -->
+    <div id="successPanel" style="display:none; text-align:center; padding:20px 0;">
+      <div style="font-size:60px; margin-bottom:16px;">&#10003;</div>
       <div style="font-size:22px; font-weight:700; color:#5eead4; margin-bottom:8px;">Account Created!</div>
-      <div style="font-size:14px; color:rgba(255,255,255,0.55); margin-bottom:24px;">Redirecting to your dashboard…
-      </div>
-      <div
-        style="width:60px; height:4px; background: linear-gradient(90deg,#14b8a6,#0d9488); border-radius:4px; margin:auto; animation: progressAnim 2s linear forwards;">
-      </div>
-      <style>
-        @keyframes progressAnim {
-          from {
-            width: 60px
-          }
-
-          to {
-            width: 100%
-          }
-        }
-      </style>
+      <div style="font-size:14px; color:rgba(255,255,255,0.55); margin-bottom:24px;">Redirecting to login...</div>
     </div>
 
     <div class="msg" id="signupMsg"></div>
@@ -380,28 +318,6 @@
       container.appendChild(p);
     }
 
-    function activateStep(n) {
-      [1, 2, 3].forEach(i => {
-        const s = document.getElementById('s' + i);
-        s.classList.toggle('active', i <= n);
-      });
-    }
-
-    function goStep1() {
-      document.getElementById('step1').style.display = 'block';
-      document.getElementById('step2').style.display = 'none';
-      activateStep(1);
-    }
-
-    function goStep2() {
-      const fn = document.getElementById('firstName').value.trim();
-      const ln = document.getElementById('lastName').value.trim();
-      if (!fn || !ln) { showMsg('Please enter your full name.', 'error'); return; }
-      document.getElementById('step1').style.display = 'none';
-      document.getElementById('step2').style.display = 'block';
-      activateStep(2);
-    }
-
     function checkStrength(val) {
       const bar = document.getElementById('strengthBar');
       const lbl = document.getElementById('strengthLabel');
@@ -414,18 +330,28 @@
 
     function showMsg(text, type) {
       const el = document.getElementById('signupMsg');
-      el.className = 'msg ' + type; el.textContent = text;
+      el.className = 'msg ' + type;
+      el.textContent = text;
     }
 
     async function doSignup() {
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
       const phone = document.getElementById('phone').value.trim();
       const pass = document.getElementById('password').value;
       const conf = document.getElementById('confirmPass').value;
-      const name = document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value;
+      const name = firstName + ' ' + lastName;
 
-      if (!phone || !pass) { showMsg('Please fill all fields.', 'error'); return; }
+      // Validation
+      if (!firstName || !lastName) { showMsg('Please enter your full name.', 'error'); return; }
+      if (!phone) { showMsg('Please enter your phone number.', 'error'); return; }
+      if (!pass) { showMsg('Please enter a password.', 'error'); return; }
       if (pass !== conf) { showMsg('Passwords do not match.', 'error'); return; }
       if (pass.length < 6) { showMsg('Password must be at least 6 characters.', 'error'); return; }
+
+      const btn = document.getElementById('signupBtn');
+      btn.textContent = 'Creating account...';
+      btn.disabled = true;
 
       try {
         const res = await fetch('/signup', {
@@ -435,33 +361,40 @@
         });
         const data = await res.json();
         if (data.status === 'success') {
-          // Also save to localStorage for login page fallback
+          // Save to localStorage for login page fallback
           let users = JSON.parse(localStorage.getItem('aegis_users') || '{}');
           users[phone] = pass;
           localStorage.setItem('aegis_users', JSON.stringify(users));
-          activateStep(3);
-          document.getElementById('step2').style.display = 'none';
-          document.getElementById('step3').style.display = 'block';
+          // Show success
+          document.getElementById('signupForm').style.display = 'none';
+          document.getElementById('successPanel').style.display = 'block';
           document.getElementById('loginLink').style.display = 'none';
           document.getElementById('signupMsg').className = 'msg';
-          setTimeout(() => { window.location.href = '/login'; }, 2200);
+          setTimeout(() => { window.location.href = '/login'; }, 2000);
         } else {
           showMsg(data.message || 'Signup failed.', 'error');
+          btn.textContent = 'Create Account →';
+          btn.disabled = false;
         }
       } catch (e) {
-        // Fallback
+        console.error('Signup error:', e);
+        // Fallback: save locally
         let users = JSON.parse(localStorage.getItem('aegis_users') || '{}');
-        if (users[phone]) { showMsg('User already exists.', 'error'); return; }
+        if (users[phone]) { showMsg('User already exists.', 'error'); btn.textContent = 'Create Account →'; btn.disabled = false; return; }
         users[phone] = pass;
         localStorage.setItem('aegis_users', JSON.stringify(users));
-        activateStep(3);
-        document.getElementById('step2').style.display = 'none';
-        document.getElementById('step3').style.display = 'block';
+        document.getElementById('signupForm').style.display = 'none';
+        document.getElementById('successPanel').style.display = 'block';
         document.getElementById('loginLink').style.display = 'none';
         document.getElementById('signupMsg').className = 'msg';
-        setTimeout(() => { window.location.href = '/login'; }, 2200);
+        setTimeout(() => { window.location.href = '/login'; }, 2000);
       }
     }
+
+    // Allow Enter key to submit
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Enter') doSignup();
+    });
   </script>
 </body>
 

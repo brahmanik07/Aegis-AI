@@ -1,0 +1,273 @@
+{
+  "P-10021": {
+    "user_id": "P-10021",
+    "phone": "9440047837",
+    "name": "Test User",
+    "created_at": "2026-01-15T09:00:00",
+    "stats": {
+      "login_count": 10,
+      "last_login": "2026-09-28T19:01:47.712802",
+      "total_appointments": 1,
+      "total_interactions": 18
+    },
+    "preferences": {
+      "hospital": "City Hospital",
+      "doctor": "Dr. Smith",
+      "department": "Cardiology",
+      "preferred_time": "Morning (10:00 AM)",
+      "communication_preference": "Detailed clinical explanations"
+    },
+    "health_profile": {
+      "conditions": [
+        "Mild Hypertension (diagnosed Jan 2026)"
+      ],
+      "allergies": [
+        "Penicillin (severe hives / anaphylaxis risk)",
+        "Sulfa drugs"
+      ],
+      "medications": [
+        "Metformin 500mg daily",
+        "Lisinopril 10mg"
+      ],
+      "symptoms_history": [
+        {
+          "date": "2026-09-25T14:30:00",
+          "symptom": "Mild chest tightness after climbing stairs",
+          "status": "monitoring"
+        }
+      ]
+    },
+    "conversations": [
+      {
+        "timestamp": "2026-09-25T14:30:00",
+        "role": "user",
+        "message": "I felt some mild chest tightness after climbing stairs today."
+      },
+      {
+        "timestamp": "2026-09-25T14:31:00",
+        "role": "assistant",
+        "message": "I've noted your mild chest tightness after exertion. Given your mild hypertension, please rest and monitor for 48-72 hours. If it recurs or radiates to your arm/jaw, seek urgent medical care."
+      },
+      {
+        "timestamp": "2026-09-28T18:10:13.480561",
+        "role": "user",
+        "message": "What are my preferences?"
+      },
+      {
+        "timestamp": "2026-09-28T18:10:13.481523",
+        "role": "assistant",
+        "message": "Here are the preferences I have learned from your past visits:\n\n• **Hospital:** City Hospital\n• **Doctor:** Dr. Smith\n• **Department:** Cardiology\n• **Preferred Time:** Morning (10:00 AM)\n• **Communication Preference:** Detailed clinical explanations\n\nI use these to customize your appointments and health reminders automatically!"
+      },
+      {
+        "timestamp": "2026-09-28T19:03:33.522061",
+        "role": "user",
+        "message": "hi"
+      },
+      {
+        "timestamp": "2026-09-28T19:03:33.523058",
+        "role": "assistant",
+        "message": "Hello **Test User**! (Visit #10). I'm keeping track of your health profile (monitoring **Mild Hypertension (diagnosed Jan 2026)**). How can I assist you with Dr. Dr. Smith's care plan today?"
+      },
+      {
+        "timestamp": "2026-09-28T19:03:47.523258",
+        "role": "user",
+        "message": "what tablets i have to take"
+      },
+      {
+        "timestamp": "2026-09-28T19:03:47.524250",
+        "role": "assistant",
+        "message": "Hello **Test User**! (Visit #10). I'm keeping track of your health profile (monitoring **Mild Hypertension (diagnosed Jan 2026)**). How can I assist you with Dr. Dr. Smith's care plan today?"
+      },
+      {
+        "timestamp": "2026-09-28T19:03:52.626077",
+        "role": "user",
+        "message": "Show my health history"
+      },
+      {
+        "timestamp": "2026-09-28T19:03:52.628070",
+        "role": "assistant",
+        "message": "Here is your clinical memory profile:\n\n• **Conditions:** Mild Hypertension (diagnosed Jan 2026)\n• **Active Medications:** Metformin 500mg daily, Lisinopril 10mg\n• **Allergies:** Penicillin (severe hives / anaphylaxis risk), Sulfa drugs\n• **Total Recorded Visits:** 10\n\nYou can add or update details at any time from the Hindsight Memory tab."
+      },
+      {
+        "timestamp": "2026-09-28T19:03:55.961563",
+        "role": "user",
+        "message": "Book an appointment"
+      },
+      {
+        "timestamp": "2026-09-28T19:03:55.963555",
+        "role": "assistant",
+        "message": "I remember that you prefer morning appointments. Would you like a morning slot with Dr. Smith at City Hospital (Morning (10:00 AM))?"
+      },
+      {
+        "timestamp": "2026-09-28T19:03:58.617592",
+        "role": "user",
+        "message": "Do you remember our last conversation?"
+      },
+      {
+        "timestamp": "2026-09-28T19:03:58.619589",
+        "role": "assistant",
+        "message": "I remember our consultation from **September 25th** where you reported mild chest tightness after climbing stairs.\n\nBecause this chest tightness has persisted for **over 72 hours** and your profile notes **Mild Hypertension (diagnosed Jan 2026)**, this is a clinical escalation. Persistent exertion-related chest tightness requires prompt medical attention.\n\nWould you like me to instantly book an emergency follow-up with your preferred cardiologist **Dr. Smith** at **City Hospital**?"
+      },
+      {
+        "timestamp": "2026-09-28T19:04:03.431398",
+        "role": "user",
+        "message": "What are my allergies?"
+      },
+      {
+        "timestamp": "2026-09-28T19:04:03.433394",
+        "role": "assistant",
+        "message": "According to your retained medical memory, you have the following recorded allergy:\n\n• **Penicillin (severe hives / anaphylaxis risk)**\n\nI check every medication query against this list to ensure your safety."
+      },
+      {
+        "timestamp": "2026-09-28T19:04:09.379593",
+        "role": "user",
+        "message": "What are my preferences?"
+      },
+      {
+        "timestamp": "2026-09-28T19:04:09.381587",
+        "role": "assistant",
+        "message": "Here are the preferences I have learned from your past visits:\n\n• **Hospital:** City Hospital\n• **Doctor:** Dr. Smith\n• **Department:** Cardiology\n• **Preferred Time:** Morning (10:00 AM)\n• **Communication Preference:** Detailed clinical explanations\n\nI use these to customize your appointments and health reminders automatically!"
+      }
+    ],
+    "interactions": [
+      {
+        "timestamp": "2026-03-05T10:00:00",
+        "type": "appointment",
+        "summary": "Routine Checkup with Dr. Smith at City Hospital (Cardiology)"
+      },
+      {
+        "timestamp": "2026-05-18T14:43:00",
+        "type": "portal_login",
+        "summary": "Patient accessed health portal"
+      },
+      {
+        "timestamp": "2026-09-25T14:30:00",
+        "type": "consultation",
+        "summary": "Reported chest tightness symptom"
+      },
+      {
+        "timestamp": "2026-09-28T18:10:13.440636",
+        "type": "portal_login",
+        "summary": "Login #7"
+      },
+      {
+        "timestamp": "2026-09-28T18:10:13.447616",
+        "type": "portal_login",
+        "summary": "Login #8"
+      },
+      {
+        "timestamp": "2026-09-28T18:10:13.483521",
+        "type": "health_allergy",
+        "summary": "Added allergy: Sulfa drugs"
+      },
+      {
+        "timestamp": "2026-09-28T18:22:47.013212",
+        "type": "portal_login",
+        "summary": "Login #9"
+      },
+      {
+        "timestamp": "2026-09-28T19:01:47.713799",
+        "type": "portal_login",
+        "summary": "Login #10"
+      }
+    ],
+    "hindsight_facts": [
+      {
+        "timestamp": "2026-09-28T18:32:18.491012",
+        "fact": "Patient prefers morning appointments.",
+        "category": "preference_timing"
+      },
+      {
+        "timestamp": "2026-09-28T19:02:24.483128",
+        "fact": "Clinical Report: Patient reported 'My chest tightness is still persisting after 3 days.'.",
+        "category": "clinical_history"
+      },
+      {
+        "timestamp": "2026-09-28T19:03:12.003562",
+        "fact": "Clinical Report: Patient reported 'My chest tightness is still persisting after 3 days.'.",
+        "category": "clinical_history"
+      }
+    ]
+  },
+  "P-10002": {
+    "user_id": "P-10002",
+    "phone": "1234567890",
+    "name": "Test Patient",
+    "created_at": "2026-09-28T19:08:47.713620",
+    "stats": {
+      "login_count": 2,
+      "last_login": "2026-09-28T19:09:18.961339",
+      "total_appointments": 0,
+      "total_interactions": 2
+    },
+    "preferences": {},
+    "health_profile": {
+      "conditions": [],
+      "allergies": [],
+      "medications": [],
+      "symptoms_history": []
+    },
+    "conversations": [],
+    "interactions": [
+      {
+        "timestamp": "2026-09-28T19:08:47.713620",
+        "type": "account_created",
+        "summary": "Account initialized for Test Patient"
+      },
+      {
+        "timestamp": "2026-09-28T19:09:18.961339",
+        "type": "portal_login",
+        "summary": "Login #2"
+      }
+    ]
+  },
+  "P-10003": {
+    "user_id": "P-10003",
+    "phone": "7386217617",
+    "name": "brahmani k",
+    "created_at": "2026-09-28T19:21:24.810432",
+    "stats": {
+      "login_count": 4,
+      "last_login": "2026-09-28T19:23:11.632159",
+      "total_appointments": 0,
+      "total_interactions": 4
+    },
+    "preferences": {},
+    "health_profile": {
+      "conditions": [],
+      "allergies": [],
+      "medications": [],
+      "symptoms_history": []
+    },
+    "conversations": [],
+    "interactions": [
+      {
+        "timestamp": "2026-09-28T19:21:24.810432",
+        "type": "account_created",
+        "summary": "Account initialized for brahmani k"
+      },
+      {
+        "timestamp": "2026-09-28T19:21:47.165853",
+        "type": "portal_login",
+        "summary": "Login #2"
+      },
+      {
+        "timestamp": "2026-09-28T19:21:48.112583",
+        "type": "portal_login",
+        "summary": "Login #3"
+      },
+      {
+        "timestamp": "2026-09-28T19:23:11.632159",
+        "type": "portal_login",
+        "summary": "Login #4"
+      }
+    ],
+    "hindsight_facts": [
+      {
+        "timestamp": "2026-09-28T19:23:43.076367",
+        "fact": "Clinical Report: Patient reported 'My chest tightness is still persisting after 3 days.'.",
+        "category": "clinical_history"
+      }
+    ]
+  }
+}

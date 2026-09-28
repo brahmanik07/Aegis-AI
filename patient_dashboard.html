@@ -576,6 +576,9 @@
         <h4>Navigation</h4>
         <div class="nav-item active" onclick="switchTab('book')"><span>📅</span> Book Appointment</div>
         <div class="nav-item" onclick="switchTab('records')"><span>📋</span> Medical Records</div>
+        <div class="nav-item" onclick="switchTab('hindsight')"><span>🔮</span> Hindsight Memory</div>
+        <div class="nav-item" onclick="switchTab('demo')"><span>⚖️</span> Before vs After Demo</div>
+        <div class="nav-item" onclick="switchTab('chat')"><span>💬</span> AI Chat</div>
         <div class="nav-item" onclick="switchTab('insights')"><span>🧠</span> AI Insights</div>
         <div class="nav-item" onclick="switchTab('alerts')"><span>🔔</span> Alerts</div>
         <div class="nav-item" onclick="switchTab('reg')"><span>📝</span> Patient Registration</div>
@@ -682,7 +685,236 @@
         </div>
       </div>
 
-      <!-- AI INSIGHTS TAB -->
+      <!-- HINDSIGHT MEMORY TAB -->
+      <div class="section-card tab-panel" id="tab-hindsight" style="display:none;">
+        <div class="section-header">
+          <h3><span>🔮</span>Hindsight Memory</h3>
+          <span class="badge">AI-Powered</span>
+        </div>
+
+        <!-- Greeting Banner -->
+        <div id="hindsightGreeting" style="background:linear-gradient(135deg,#14b8a6,#0d9488);border-radius:14px;padding:22px 26px;color:#fff;margin-bottom:22px;">
+          <div style="font-size:18px;font-weight:700;" id="greetingText">Loading memory...</div>
+          <div style="font-size:13px;margin-top:6px;opacity:0.8;" id="greetingSub">Aegis AI remembers your preferences and history.</div>
+        </div>
+
+        <!-- Smart Suggestions -->
+        <div style="margin-bottom:22px;">
+          <h4 style="font-size:14px;color:#94a3b8;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">💡 Smart Suggestions</h4>
+          <div id="suggestionsContainer" style="display:flex;flex-direction:column;gap:10px;">
+            <p style="color:#64748b;font-size:14px;">Loading suggestions...</p>
+          </div>
+        </div>
+
+        <!-- Health Recall -->
+        <div style="margin-bottom:22px;">
+          <h4 style="font-size:14px;color:#94a3b8;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">🏥 Health Memory</h4>
+          <div id="healthRecallContainer" style="display:flex;flex-direction:column;gap:8px;">
+            <p style="color:#64748b;font-size:14px;">Loading health memory...</p>
+          </div>
+        </div>
+
+        <!-- Learned Preferences -->
+        <div style="margin-bottom:22px;">
+          <h4 style="font-size:14px;color:#94a3b8;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">⚙️ Learned Preferences</h4>
+          <div id="preferencesContainer" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <p style="color:#64748b;font-size:14px;">No preferences learned yet.</p>
+          </div>
+        </div>
+
+        <!-- Recent Interactions -->
+        <div>
+          <h4 style="font-size:14px;color:#94a3b8;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">📊 Recent Activity</h4>
+          <div id="interactionsContainer">
+            <p style="color:#64748b;font-size:14px;">No recent activity.</p>
+          </div>
+        </div>
+
+        <!-- Add Health Info -->
+        <div style="margin-top:22px;padding-top:22px;border-top:1px solid rgba(255,255,255,0.06);">
+          <h4 style="font-size:14px;color:#94a3b8;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">➕ Add to Memory</h4>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <select id="healthInfoType" style="padding:10px 14px;background:#0f172a;border:1.5px solid rgba(255,255,255,0.08);border-radius:10px;color:#e2e8f0;font-size:13px;">
+              <option value="condition">Condition</option>
+              <option value="allergy">Allergy</option>
+              <option value="medication">Medication</option>
+              <option value="symptom">Symptom</option>
+            </select>
+            <input type="text" id="healthInfoValue" placeholder="e.g. Diabetes, Penicillin, Aspirin..." style="flex:1;min-width:200px;padding:10px 14px;background:#0f172a;border:1.5px solid rgba(255,255,255,0.08);border-radius:10px;color:#e2e8f0;font-size:13px;outline:none;">
+            <button onclick="addHealthInfo()" style="padding:10px 20px;background:linear-gradient(135deg,#14b8a6,#0d9488);border:none;border-radius:10px;color:#fff;font-weight:600;cursor:pointer;font-size:13px;">Save to Memory</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- BEFORE vs AFTER HINDSIGHT DEMONSTRATION TAB -->
+      <div class="section-card tab-panel" id="tab-demo" style="display:none;">
+        <div class="section-header">
+          <h3><span>⚖️</span>Hindsight Memory: Before vs. After Demonstration</h3>
+          <span class="badge" style="background:rgba(20,184,166,0.2);color:#2dd4bf;">Live Comparison</span>
+        </div>
+
+        <!-- Architectural Overview Banner -->
+        <div style="background:linear-gradient(135deg,#0f2b38,#134e4a);border:1px solid rgba(20,184,166,0.3);border-radius:14px;padding:22px;margin-bottom:24px;">
+          <div style="font-size:16px;font-weight:700;color:#5eead4;margin-bottom:8px;">
+            🧠 Why Aegis AI Needs Hindsight Memory
+          </div>
+          <div style="font-size:13px;line-height:1.6;color:#cbd5e1;">
+            Standard conversational AI systems suffer from <strong>amnesia</strong>—treating every interaction as day zero.
+            In healthcare, forgetting previous context is clinically dangerous and frustrating. Hindsight provides a persistent 
+            memory architecture based on <strong>Retain, Recall, and Reflect</strong>:
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px;">
+            <div style="background:rgba(0,0,0,0.3);padding:12px;border-radius:10px;border-left:3px solid #f43f5e;">
+              <div style="font-size:12px;font-weight:700;color:#fda4af;">1. Previous Interactions</div>
+              <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Tracks total visits, admission frequency, and long-term patient relationship.</div>
+            </div>
+            <div style="background:rgba(0,0,0,0.3);padding:12px;border-radius:10px;border-left:3px solid #38bdf8;">
+              <div style="font-size:12px;font-weight:700;color:#7dd3fc;">2. Patient Preferences</div>
+              <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Remembers preferred doctors (Dr. Smith), hospitals, and appointment slots.</div>
+            </div>
+            <div style="background:rgba(0,0,0,0.3);padding:12px;border-radius:10px;border-left:3px solid #fbbf24;">
+              <div style="font-size:12px;font-weight:700;color:#fde68a;">3. Conversation History</div>
+              <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Recalls multi-day symptom reports and notices worsening conditions.</div>
+            </div>
+            <div style="background:rgba(0,0,0,0.3);padding:12px;border-radius:10px;border-left:3px solid #34d399;">
+              <div style="font-size:12px;font-weight:700;color:#a7f3d0;">4. Past Information for Safety</div>
+              <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Cross-checks drug allergies (e.g. Penicillin) to prevent fatal contraindications.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Comparison Sandbox -->
+        <div style="background:#0f172a;border-radius:14px;border:1px solid rgba(255,255,255,0.08);padding:20px;margin-bottom:28px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px;">
+            <h4 style="font-size:14px;font-weight:700;color:#f1f5f9;text-transform:uppercase;letter-spacing:1px;">
+              🔬 Interactive Live Tester: Amnesic vs. Hindsight-Augmented
+            </h4>
+            <span style="font-size:12px;color:#94a3b8;">Enter any query or test a preset scenario below</span>
+          </div>
+
+          <!-- Quick Preset Scenario Buttons -->
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+            <button onclick="runLiveCompare('Can I take Amoxicillin 500mg for my throat infection?')" 
+                    style="padding:7px 12px;background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.3);border-radius:8px;color:#fca5a5;font-size:12px;cursor:pointer;font-weight:500;">
+              🧪 Test Allergy Safety (Amoxicillin)
+            </button>
+            <button onclick="runLiveCompare('I would like to book an appointment.')" 
+                    style="padding:7px 12px;background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.3);border-radius:8px;color:#93c5fd;font-size:12px;cursor:pointer;font-weight:500;">
+              📅 Test Doctor & Hospital Preference
+            </button>
+            <button onclick="runLiveCompare('My chest tightness is still persisting after 3 days.')" 
+                    style="padding:7px 12px;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.3);border-radius:8px;color:#fcd34d;font-size:12px;cursor:pointer;font-weight:500;">
+              🩺 Test Symptom Persistence Recall
+            </button>
+            <button onclick="runLiveCompare('What are my preferences and health history?')" 
+                    style="padding:7px 12px;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.3);border-radius:8px;color:#d8b4fe;font-size:12px;cursor:pointer;font-weight:500;">
+              📋 Test Longitudinal Profile
+            </button>
+          </div>
+
+          <!-- Input Box -->
+          <div style="display:flex;gap:10px;margin-bottom:20px;">
+            <input type="text" id="demoCompareInput" 
+                   placeholder="Type a test question (e.g., 'Can I take Augmentin?', 'Book a visit', 'Do you remember my symptoms?')..." 
+                   style="flex:1;padding:12px 16px;background:#1e293b;border:1.5px solid rgba(255,255,255,0.1);border-radius:10px;color:#fff;font-size:13px;outline:none;"
+                   onkeydown="if(event.key==='Enter')runLiveCompare()">
+            <button onclick="runLiveCompare()" 
+                    style="padding:12px 22px;background:linear-gradient(135deg,#14b8a6,#0d9488);border:none;border-radius:10px;color:#fff;font-weight:700;cursor:pointer;font-size:13px;">
+              Compare Now ⚡
+            </button>
+          </div>
+
+          <!-- Live Side-by-Side Dual Display -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;" id="compareResultContainer">
+            <!-- Left Pane: Before Hindsight -->
+            <div style="background:#131d2e;border:1.5px solid rgba(239,68,68,0.3);border-radius:12px;padding:18px;display:flex;flex-direction:column;justify-content:space-between;">
+              <div>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+                  <span style="font-size:14px;font-weight:700;color:#f87171;display:flex;align-items:center;gap:6px;">
+                    ❌ BEFORE Hindsight
+                  </span>
+                  <span style="font-size:11px;padding:3px 8px;border-radius:6px;background:rgba(239,68,68,0.15);color:#fca5a5;font-weight:600;">
+                    Amnesic (Memory Disabled)
+                  </span>
+                </div>
+                <div id="compareBeforeResponse" style="font-size:13.5px;color:#cbd5e1;line-height:1.6;background:#0b1120;padding:14px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);min-height:90px;">
+                  Click one of the preset scenario buttons above or enter a question to see the live comparison.
+                </div>
+              </div>
+              <div id="compareBeforeCritique" style="margin-top:12px;padding:10px 12px;background:rgba(239,68,68,0.1);border-left:3px solid #ef4444;border-radius:6px;font-size:12px;color:#fca5a5;font-weight:500;">
+                ⚠️ <strong>Failure Point:</strong> Forgets historical patient data, exposing patient to clinical risk or redundant friction.
+              </div>
+            </div>
+
+            <!-- Right Pane: After Hindsight -->
+            <div style="background:#131d2e;border:1.5px solid rgba(20,184,166,0.4);border-radius:12px;padding:18px;display:flex;flex-direction:column;justify-content:space-between;">
+              <div>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+                  <span style="font-size:14px;font-weight:700;color:#2dd4bf;display:flex;align-items:center;gap:6px;">
+                    ✅ AFTER Hindsight
+                  </span>
+                  <span style="font-size:11px;padding:3px 8px;border-radius:6px;background:rgba(20,184,166,0.15);color:#5eead4;font-weight:600;">
+                    Context-Aware (Memory Active)
+                  </span>
+                </div>
+                <div id="compareAfterRecalled" style="font-size:11.5px;color:#5eead4;margin-bottom:8px;background:rgba(20,184,166,0.08);padding:6px 10px;border-radius:6px;">
+                  🔮 <strong>Recalled Banks:</strong> Ready to fetch memory
+                </div>
+                <div id="compareAfterResponse" style="font-size:13.5px;color:#e2e8f0;line-height:1.6;background:#0b1120;padding:14px;border-radius:8px;border:1px solid rgba(20,184,166,0.15);min-height:90px;">
+                  Hindsight will retrieve active conditions, allergy contraindications, doctor preferences, and previous conversation threads.
+                </div>
+              </div>
+              <div id="compareAfterAdvantage" style="margin-top:12px;padding:10px 12px;background:rgba(20,184,166,0.1);border-left:3px solid #14b8a6;border-radius:6px;font-size:12px;color:#5eead4;font-weight:500;">
+                🛡️ <strong>Hindsight Advantage:</strong> Contextual continuity, automated drug safety cross-check, and personalized care.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Detailed Demonstration Case Studies -->
+        <div>
+          <h4 style="font-size:15px;font-weight:700;color:#f1f5f9;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;">
+            📑 4 Core Demonstration Case Studies
+          </h4>
+          <div id="scenariosList" style="display:flex;flex-direction:column;gap:18px;">
+            <!-- Scenarios will be dynamically loaded from API -->
+            <p style="color:#64748b;font-size:14px;">Loading comparison scenarios...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI CHAT TAB -->
+      <div class="section-card tab-panel" id="tab-chat" style="display:none;">
+        <div class="section-header">
+          <h3><span>💬</span>AI Chat (Hindsight-Powered)</h3>
+          <span class="badge">Memory-Aware</span>
+        </div>
+
+        <!-- Chat Messages -->
+        <div id="chatMessages" style="height:400px;overflow-y:auto;padding:16px;background:#0f172a;border-radius:14px;border:1px solid rgba(255,255,255,0.06);margin-bottom:16px;display:flex;flex-direction:column;gap:12px;">
+          <div style="background:rgba(20,184,166,0.12);padding:14px 18px;border-radius:14px;border-bottom-left-radius:4px;max-width:85%;font-size:14px;color:#5eead4;">
+            👋 Hello! I'm Aegis AI with <strong>Hindsight Memory</strong>. I remember your past conversations, preferences, and health history. Try asking me about your preferences, past visits, or to book an appointment!
+          </div>
+        </div>
+
+        <!-- Chat Input -->
+        <div style="display:flex;gap:10px;">
+          <input type="text" id="chatInput" placeholder="Ask me anything... I remember our past conversations!" style="flex:1;padding:14px 18px;background:#0f172a;border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;color:#e2e8f0;font-size:14px;outline:none;" onkeydown="if(event.key==='Enter')sendChat()">
+          <button onclick="sendChat()" style="padding:14px 24px;background:linear-gradient(135deg,#14b8a6,#0d9488);border:none;border-radius:12px;color:#fff;font-weight:700;cursor:pointer;font-size:14px;transition:0.3s;">Send →</button>
+        </div>
+
+        <!-- Quick Actions -->
+        <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
+          <button onclick="quickChat('What are my preferences?')" style="padding:8px 14px;background:rgba(20,184,166,0.1);border:1px solid rgba(20,184,166,0.2);border-radius:20px;color:#5eead4;font-size:12px;cursor:pointer;">My Preferences</button>
+          <button onclick="quickChat('Show my health history')" style="padding:8px 14px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);border-radius:20px;color:#93c5fd;font-size:12px;cursor:pointer;">Health History</button>
+          <button onclick="quickChat('Book an appointment')" style="padding:8px 14px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);border-radius:20px;color:#fcd34d;font-size:12px;cursor:pointer;">Book Appointment</button>
+          <button onclick="quickChat('Do you remember our last conversation?')" style="padding:8px 14px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2);border-radius:20px;color:#c4b5fd;font-size:12px;cursor:pointer;">Recall Last Chat</button>
+          <button onclick="quickChat('What are my allergies?')" style="padding:8px 14px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);border-radius:20px;color:#fca5a5;font-size:12px;cursor:pointer;">My Allergies</button>
+          <button onclick="quickChat('What can you help me with?')" style="padding:8px 14px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);border-radius:20px;color:#86efac;font-size:12px;cursor:pointer;">Help</button>
+        </div>
+      </div>
+
+      <!-- AI HEALTH INSIGHTS TAB -->
       <div class="section-card tab-panel" id="tab-insights" style="display:none;">
         <div class="section-header">
           <h3><span>🧠</span>AI Health Insights</h3>
@@ -839,11 +1071,24 @@
       setTimeout(() => t.classList.remove('show'), 3000);
     }
 
-    function switchTab(name) {
+    function switchTab(name, el = null) {
       document.querySelectorAll('.tab-panel').forEach(p => p.style.display = 'none');
       document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-      document.getElementById('tab-' + name).style.display = 'block';
-      event.currentTarget.classList.add('active');
+      const targetPanel = document.getElementById('tab-' + name);
+      if (targetPanel) targetPanel.style.display = 'block';
+
+      const targetNav = el || (typeof event !== 'undefined' && event && event.currentTarget) || document.querySelector(`.nav-item[onclick*="'${name}'"]`);
+      if (targetNav && targetNav.classList) {
+        targetNav.classList.add('active');
+      }
+
+      // Load hindsight data when switching to hindsight tab
+      if (name === 'hindsight') loadHindsight();
+      // Load demonstration data when switching to demo tab
+      if (name === 'demo') {
+        loadDemonstrations();
+        runLiveCompare('Can I take Amoxicillin 500mg for my throat infection?');
+      }
     }
 
     function updateCounters() {
@@ -907,7 +1152,7 @@
       renderRecords();
       this.reset();
       document.getElementById('patientId').value = savedId;
-      showToast('✅ Appointment booked successfully!');
+      showToast('✅ Appointment booked! Aegis learned your preferences.');
     });
 
     // Patient registration form
@@ -916,6 +1161,404 @@
       showToast('✅ Patient data submitted to Aegis AI for analysis!');
       this.reset();
     });
+
+    // ═══════════════════════════════════════════════════════
+    //  HINDSIGHT MEMORY SYSTEM — Frontend Logic
+    // ═══════════════════════════════════════════════════════
+
+    async function loadHindsight() {
+      try {
+        const res = await fetch('/api/hindsight');
+        const data = await res.json();
+        if (data.status !== 'success') return;
+
+        const h = data.data;
+
+        // Greeting
+        document.getElementById('greetingText').textContent = h.greeting || 'Welcome!';
+        const stats = h.stats || {};
+        document.getElementById('greetingSub').textContent =
+          `Login #${stats.login_count || 1} • Aegis AI remembers your preferences and history.`;
+
+        // Update visit count in sidebar
+        if (stats.login_count) {
+          document.getElementById('visitCount').textContent = stats.login_count;
+        }
+
+        // Smart Suggestions
+        const sugDiv = document.getElementById('suggestionsContainer');
+        const suggestions = h.smart_suggestions || [];
+        if (suggestions.length > 0) {
+          sugDiv.innerHTML = suggestions.map(s => `
+            <div style="background:#0f172a;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:12px;">
+              <span style="font-size:20px;">${
+                s.type === 'hospital' ? '🏥' :
+                s.type === 'doctor' ? '👨‍⚕️' :
+                s.type === 'department' ? '🏷️' :
+                s.type === 'time_slot' ? '⏰' :
+                s.type === 'health' ? '❤️' : '💡'
+              }</span>
+              <div>
+                <div style="font-size:14px;color:#e2e8f0;">${s.text}</div>
+                ${s.value ? `<div style="font-size:11px;color:#5eead4;margin-top:3px;">Learned value: ${s.value}</div>` : ''}
+              </div>
+            </div>
+          `).join('');
+        } else {
+          sugDiv.innerHTML = '<p style="color:#64748b;font-size:14px;">Book your first appointment so Aegis can learn your preferences!</p>';
+        }
+
+        // Health Recall
+        const healthDiv = document.getElementById('healthRecallContainer');
+        const healthRecall = h.health_recall || [];
+        if (healthRecall.length > 0 && healthRecall[0] !== 'No health history recorded yet. Aegis will learn as you interact.') {
+          healthDiv.innerHTML = healthRecall.map(item => `
+            <div style="background:#0f172a;border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:10px 16px;font-size:14px;color:#94a3b8;">
+              ${item}
+            </div>
+          `).join('');
+        } else {
+          healthDiv.innerHTML = '<p style="color:#64748b;font-size:14px;">No health history recorded yet. Add conditions, allergies, or medications below.</p>';
+        }
+
+        // Preferences
+        const prefDiv = document.getElementById('preferencesContainer');
+        const prefs = h.preference_recall || {};
+        const prefEntries = Object.entries(prefs);
+        if (prefEntries.length > 0) {
+          prefDiv.innerHTML = prefEntries.map(([key, val]) => `
+            <div style="background:#0f172a;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:14px;text-align:center;">
+              <div style="font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">${key.replace('_', ' ')}</div>
+              <div style="font-size:16px;font-weight:600;color:#5eead4;">${val}</div>
+            </div>
+          `).join('');
+
+          // Auto-fill appointment form with preferences
+          if (prefs.hospital) document.getElementById('hospital').placeholder = `Suggestion: ${prefs.hospital}`;
+          if (prefs.doctor) document.getElementById('doctor').placeholder = `Suggestion: ${prefs.doctor}`;
+        } else {
+          prefDiv.innerHTML = '<p style="color:#64748b;font-size:14px;">No preferences learned yet. Book appointments to teach Aegis your patterns!</p>';
+        }
+
+        // Recent Interactions
+        const intDiv = document.getElementById('interactionsContainer');
+        const recent = h.stats || {};
+        if (recent.login_count > 0) {
+          const lastLogin = recent.last_login ? new Date(recent.last_login).toLocaleString() : 'N/A';
+          intDiv.innerHTML = `
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+              <div style="background:#0f172a;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:14px;text-align:center;">
+                <div style="font-size:22px;font-weight:700;color:#14b8a6;">${recent.login_count}</div>
+                <div style="font-size:11px;color:#64748b;margin-top:4px;">Total Logins</div>
+              </div>
+              <div style="background:#0f172a;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:14px;text-align:center;">
+                <div style="font-size:22px;font-weight:700;color:#3b82f6;">${appointments.length}</div>
+                <div style="font-size:11px;color:#64748b;margin-top:4px;">Appointments</div>
+              </div>
+              <div style="background:#0f172a;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:14px;text-align:center;">
+                <div style="font-size:13px;font-weight:600;color:#f59e0b;">${lastLogin}</div>
+                <div style="font-size:11px;color:#64748b;margin-top:4px;">Last Login</div>
+              </div>
+            </div>
+          `;
+        }
+
+      } catch (err) {
+        console.error('Failed to load hindsight:', err);
+      }
+    }
+
+    // ═══ Add Health Info to Memory ═══
+    async function addHealthInfo() {
+      const type = document.getElementById('healthInfoType').value;
+      const value = document.getElementById('healthInfoValue').value.trim();
+      if (!value) { showToast('Please enter a value.', false); return; }
+
+      try {
+        const res = await fetch('/api/memory/health', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type, value })
+        });
+        const data = await res.json();
+        if (data.status === 'success') {
+          showToast(`✅ ${type.charAt(0).toUpperCase() + type.slice(1)} "${value}" saved to memory!`);
+          document.getElementById('healthInfoValue').value = '';
+          loadHindsight(); // Refresh display
+        }
+      } catch (e) {
+        showToast('Failed to save. Is the server running?', false);
+      }
+    }
+
+    // ═══ AI Chat (Hindsight-Powered) ═══
+    async function sendChat() {
+      const input = document.getElementById('chatInput');
+      const message = input.value.trim();
+      if (!message) return;
+
+      const chatDiv = document.getElementById('chatMessages');
+
+      // Add user message
+      chatDiv.innerHTML += `
+        <div style="background:rgba(59,130,246,0.12);padding:14px 18px;border-radius:14px;border-bottom-right-radius:4px;max-width:85%;align-self:flex-end;font-size:14px;color:#93c5fd;">
+          ${message}
+        </div>
+      `;
+
+      input.value = '';
+
+      // Show typing indicator
+      const typingId = 'typing-' + Date.now();
+      chatDiv.innerHTML += `
+        <div id="${typingId}" style="background:rgba(20,184,166,0.08);padding:14px 18px;border-radius:14px;border-bottom-left-radius:4px;max-width:85%;font-size:14px;color:#5eead4;opacity:0.6;">
+          🔮 Aegis is recalling memories and thinking...
+        </div>
+      `;
+      chatDiv.scrollTop = chatDiv.scrollHeight;
+
+      try {
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message })
+        });
+        const data = await res.json();
+
+        // Remove typing indicator
+        document.getElementById(typingId)?.remove();
+
+        if (data.status === 'success') {
+          // Format response (handle markdown-like bold)
+          const formatted = data.response
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\n/g, '<br>');
+
+          chatDiv.innerHTML += `
+            <div style="background:rgba(20,184,166,0.12);padding:14px 18px;border-radius:14px;border-bottom-left-radius:4px;max-width:85%;font-size:14px;color:#5eead4;">
+              🔮 ${formatted}
+            </div>
+          `;
+        } else {
+          chatDiv.innerHTML += `
+            <div style="background:rgba(239,68,68,0.12);padding:14px 18px;border-radius:14px;max-width:85%;font-size:14px;color:#fca5a5;">
+              ⚠️ ${data.message || 'Something went wrong.'}
+            </div>
+          `;
+        }
+      } catch (e) {
+        document.getElementById(typingId)?.remove();
+        chatDiv.innerHTML += `
+          <div style="background:rgba(239,68,68,0.12);padding:14px 18px;border-radius:14px;max-width:85%;font-size:14px;color:#fca5a5;">
+            ⚠️ Could not reach the server. Is Flask running?
+          </div>
+        `;
+      }
+
+      chatDiv.scrollTop = chatDiv.scrollHeight;
+    }
+
+    function quickChat(msg) {
+      document.getElementById('chatInput').value = msg;
+      sendChat();
+    }
+
+    // ═══════════════════════════════════════════════════════
+    //  BEFORE vs. AFTER DEMONSTRATION LOGIC
+    // ═══════════════════════════════════════════════════════
+
+    const STATIC_SCENARIOS = [
+      {
+        id: "scenario-1",
+        category: "Medication Safety & Allergy Recall",
+        user_prompt: "Can I take Amoxicillin 500mg for my throat infection?",
+        why_memory_needed: "Critical safety. Without memory of the patient's Penicillin allergy, the agent approves a potentially fatal drug.",
+        before: {
+          response: "Amoxicillin 500mg is a commonly prescribed beta-lactam antibiotic used to treat bacterial respiratory infections, ear infections, and dental abscesses. You can take it three times a day with water after meals. Always complete the full course prescribed.",
+          critique: "CRITICAL RISK: Aegis forgot patient's severe Penicillin allergy! Recommending Amoxicillin could trigger fatal anaphylaxis."
+        },
+        after: {
+          response: "🚨 **CRITICAL MEDICAL SAFETY ALERT**: Do NOT take Amoxicillin!\n\nMy Hindsight memory recalls from your medical record: **Penicillin (severe hives / anaphylaxis risk)**.\n\nAmoxicillin belongs to the **penicillin class** of antibiotics and carries a severe risk of cross-reactivity, hives, or anaphylaxis. I strongly advise against taking it. Please contact **Dr. Smith** at **City Hospital** to prescribe a safe, non-penicillin alternative (such as Azithromycin or Clarithromycin).",
+          advantage: "LIFE-SAVING: Immediately cross-referenced past allergy memory before providing medication guidance."
+        }
+      },
+      {
+        id: "scenario-2",
+        category: "Remembering Patient Preferences",
+        user_prompt: "I would like to book an appointment.",
+        why_memory_needed: "User friction. Without memory, the user must re-enter hospital, doctor, department, and timing every single time.",
+        before: {
+          response: "I can help you book an appointment. Please specify: Which hospital? Which doctor? Which medical department? What date and time? And what is your reason for visit?",
+          critique: "FRUSTRATING UX: Aegis asks for every detail from scratch, ignoring patient's 6 prior visits to Dr. Smith at City Hospital."
+        },
+        after: {
+          response: "Welcome back, **Test User**! Based on your previous appointments and learned preferences, I have pre-configured your booking:\n\n• **Hospital:** City Hospital\n• **Doctor:** Dr. Smith (Cardiology)\n• **Preferred Timing:** Morning (10:00 AM)\n\nWould you like me to confirm this slot for tomorrow morning, or would you prefer a different time?",
+          advantage: "SEAMLESS UX: 1-click booking based on habitual preferences."
+        }
+      },
+      {
+        id: "scenario-3",
+        category: "Recalling Previous Conversations & Symptom Evolution",
+        user_prompt: "My chest tightness is still persisting after 3 days.",
+        why_memory_needed: "Clinical context. Without memory, the AI has no idea what 'still persisting' refers to, treating it as an uncontextualized event.",
+        before: {
+          response: "Hello, I am an AI medical assistant. What symptoms are you experiencing, and when did they start? I don't have access to any previous conversations. Please describe your condition in full.",
+          critique: "BROKEN CONTINUITY: Forgets patient reported chest tightness 3 days ago and fails to identify symptom worsening."
+        },
+        after: {
+          response: "I remember our consultation from **September 25th** where you reported mild chest tightness after climbing stairs.\n\nBecause this chest tightness has persisted for **over 72 hours** and your profile notes **Mild Hypertension**, this is a clinical escalation. Persistent exertion-related chest tightness requires prompt medical attention.\n\nWould you like me to instantly book an emergency follow-up with your preferred cardiologist **Dr. Smith** at **City Hospital**?",
+          advantage: "CLINICAL CONTINUITY: Connected past report with current worsening to escalate triage level."
+        }
+      },
+      {
+        id: "scenario-4",
+        category: "Remembering User Interactions & Longitudinal Continuity",
+        user_prompt: "What are my preferences and health history?",
+        why_memory_needed: "Long-term relationship. Without memory, the AI behaves like a cold stranger on every single visit.",
+        before: {
+          response: "I don't have any preferences saved for you. I treat every session as brand new.",
+          critique: "ZERO PERSONALIZATION: Fails to retain any patient habits or preferences."
+        },
+        after: {
+          response: "Here are the preferences I have learned from your past visits:\n\n• **Hospital:** City Hospital\n• **Doctor:** Dr. Smith\n• **Department:** Cardiology\n• **Preferred Time:** Morning (10:00 AM)\n• **Communication Preference:** Detailed clinical explanations\n\nI use these to customize your appointments and health reminders automatically!",
+          advantage: "TRANSPARENCY: Full visibility into agent's retained mental model."
+        }
+      }
+    ];
+
+    function renderScenariosHtml(scenarios) {
+      const container = document.getElementById('scenariosList');
+      if (!container) return;
+      container.innerHTML = scenarios.map((s, idx) => `
+        <div style="background:#0f172a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:20px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
+            <div>
+              <span style="font-size:11px;font-weight:700;color:#14b8a6;text-transform:uppercase;letter-spacing:1px;">Case Study #${idx + 1}</span>
+              <h4 style="font-size:16px;font-weight:700;color:#f1f5f9;margin-top:2px;">${s.category}</h4>
+            </div>
+            <button onclick="runLiveCompare('${s.user_prompt.replace(/'/g, "\\'")}')" 
+                    style="padding:6px 14px;background:rgba(20,184,166,0.15);border:1px solid rgba(20,184,166,0.3);border-radius:8px;color:#5eead4;font-size:12px;cursor:pointer;font-weight:600;">
+              ▶ Run in Live Tester
+            </button>
+          </div>
+
+          <div style="font-size:13px;color:#94a3b8;margin-bottom:12px;">
+            <strong>User Query:</strong> <span style="color:#e2e8f0;background:#1e293b;padding:3px 8px;border-radius:6px;">"${s.user_prompt}"</span>
+          </div>
+
+          <div style="font-size:12.5px;color:#cbd5e1;background:rgba(0,0,0,0.25);padding:10px 14px;border-radius:8px;margin-bottom:14px;border-left:3px solid #38bdf8;">
+            💡 <strong>Why AI Needs Memory Here:</strong> ${s.why_memory_needed}
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+            <!-- Before -->
+            <div style="background:#131d2e;border:1px solid rgba(239,68,68,0.3);border-radius:10px;padding:14px;">
+              <div style="font-size:12px;font-weight:700;color:#f87171;margin-bottom:6px;">❌ BEFORE Hindsight (Amnesic):</div>
+              <div style="font-size:13px;color:#cbd5e1;line-height:1.5;">${s.before.response}</div>
+              <div style="margin-top:10px;font-size:11.5px;color:#fca5a5;background:rgba(239,68,68,0.1);padding:6px 10px;border-radius:6px;">
+                ⚠️ ${s.before.critique}
+              </div>
+            </div>
+
+            <!-- After -->
+            <div style="background:#131d2e;border:1px solid rgba(20,184,166,0.4);border-radius:10px;padding:14px;">
+              <div style="font-size:12px;font-weight:700;color:#2dd4bf;margin-bottom:6px;">✅ AFTER Hindsight (Recalled):</div>
+              <div style="font-size:13px;color:#e2e8f0;line-height:1.5;">
+                ${s.after.response.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}
+              </div>
+              <div style="margin-top:10px;font-size:11.5px;color:#5eead4;background:rgba(20,184,166,0.1);padding:6px 10px;border-radius:6px;">
+                🛡️ ${s.after.advantage}
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    async function loadDemonstrations() {
+      try {
+        const res = await fetch('/api/demonstrations');
+        const data = await res.json();
+        if (data.status === 'success' && data.data && data.data.length > 0) {
+          renderScenariosHtml(data.data);
+          return;
+        }
+      } catch (err) {
+        // Fallback to static data
+      }
+      renderScenariosHtml(STATIC_SCENARIOS);
+    }
+
+    async function runLiveCompare(customQuery = null) {
+      const input = document.getElementById('demoCompareInput');
+      const query = customQuery || (input ? input.value.trim() : '');
+      if (!query) return;
+
+      if (input) input.value = query;
+
+      const beforeDiv = document.getElementById('compareBeforeResponse');
+      const beforeCritique = document.getElementById('compareBeforeCritique');
+      const afterDiv = document.getElementById('compareAfterResponse');
+      const afterRecalled = document.getElementById('compareAfterRecalled');
+      const afterAdvantage = document.getElementById('compareAfterAdvantage');
+
+      if (beforeDiv) beforeDiv.innerHTML = '<span style="opacity:0.6;">Generating amnesic baseline response...</span>';
+      if (afterDiv) afterDiv.innerHTML = '<span style="opacity:0.6;">Recalling Hindsight memories & analyzing...</span>';
+
+      try {
+        const res = await fetch('/api/demo/compare', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: query })
+        });
+        const data = await res.json();
+        if (data.status === 'success') {
+          // Render Before
+          if (beforeDiv) beforeDiv.textContent = data.before.response;
+          if (beforeCritique) beforeCritique.innerHTML = `⚠️ <strong>Failure Point:</strong> ${data.before.critique}`;
+
+          // Render After
+          const formattedAfter = data.after.response
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\n/g, '<br>');
+          if (afterDiv) afterDiv.innerHTML = formattedAfter;
+
+          const recalled = data.after.recalled_items || [];
+          if (afterRecalled) {
+            afterRecalled.innerHTML = `🔮 <strong>Recalled Memories:</strong> ${
+              recalled.length > 0 ? recalled.map(r => `<span style="display:inline-block;background:rgba(20,184,166,0.2);padding:2px 6px;border-radius:4px;margin-right:4px;">${r}</span>`).join('') : '<span style="opacity:0.6;">General patient context</span>'
+            }`;
+          }
+          if (afterAdvantage) afterAdvantage.innerHTML = `🛡️ <strong>Hindsight Advantage:</strong> ${data.after.advantage || 'Contextual continuity'}`;
+          return;
+        }
+      } catch (e) {
+        // Fallback to local matching
+      }
+
+      // Local Fallback Matcher
+      const q = query.toLowerCase();
+      let matched = STATIC_SCENARIOS[0]; // default to allergy
+      if (q.includes('book') || q.includes('appointment') || q.includes('doctor')) matched = STATIC_SCENARIOS[1];
+      else if (q.includes('chest') || q.includes('tightness') || q.includes('persist') || q.includes('pain')) matched = STATIC_SCENARIOS[2];
+      else if (q.includes('preference') || q.includes('history') || q.includes('profile')) matched = STATIC_SCENARIOS[3];
+
+      if (beforeDiv) beforeDiv.textContent = matched.before.response;
+      if (beforeCritique) beforeCritique.innerHTML = `⚠️ <strong>Failure Point:</strong> ${matched.before.critique}`;
+      if (afterDiv) afterDiv.innerHTML = matched.after.response.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+      if (afterRecalled) afterRecalled.innerHTML = '🔮 <strong>Recalled Memories:</strong> <span style="display:inline-block;background:rgba(20,184,166,0.2);padding:2px 6px;border-radius:4px;">Hindsight Memory Bank</span>';
+      if (afterAdvantage) afterAdvantage.innerHTML = `🛡️ <strong>Hindsight Advantage:</strong> ${matched.after.advantage}`;
+    }
+
+    // Load hindsight on page load (in background)
+    setTimeout(() => {
+      fetch('/api/hindsight').then(r => r.json()).then(d => {
+        if (d.status === 'success' && d.data.stats) {
+          const lc = d.data.stats.login_count || 0;
+          document.getElementById('visitCount').textContent = lc;
+        }
+      }).catch(() => {});
+    }, 500);
   </script>
 </body>
 
